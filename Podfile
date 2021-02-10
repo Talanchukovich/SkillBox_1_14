@@ -8,6 +8,7 @@ target 'homeWork 14' do
   # Pods for homeWork 14
 pod 'RealmSwift', '=10.5.1'
 pod 'SnapKit', '~> 5.0.0'
+pod 'Alamofire', '~> 5.2'
 
   target 'homeWork 14Tests' do
     inherit! :search_paths
