@@ -30,7 +30,7 @@ class Task_c_ViewController: UIViewController {
     var newDate = ""
     var adTaskButtonEdingMode = false
     var editIndex = 0
-    var tvc: DateTimeTableController?
+    
    
    
     @IBOutlet weak var constraint: NSLayoutConstraint!
@@ -130,7 +130,7 @@ class Task_c_ViewController: UIViewController {
     
     
     // DateTimeTableController
-    
+    weak var tvc: DateTimeTableController?
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "toPicker" {
             if let tvc = segue.destination as? DateTimeTableController {

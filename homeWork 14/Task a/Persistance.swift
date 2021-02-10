@@ -12,7 +12,7 @@ class Persistance {
     static let persistanse = Persistance()
     private let firstNameKey = "firstNameKey"
     private let secondNameKey = "secondNameKey"
-    private let weather = "weather"
+   
     
     var userFirstName: String? {
         set {UserDefaults.standard.set(newValue, forKey: firstNameKey)}
@@ -24,26 +24,43 @@ class Persistance {
         get {return UserDefaults.standard.string(forKey: secondNameKey)}
     }
     
-//    var savedWeather1: [Weather] {
-//        set {UserDefaults.standard.setValue(try! JSONEncoder().encode(newValue), forKey: weather)}
-//        get {try! JSONDecoder().decode([Weather].self, from: UserDefaults.standard.data(forKey: weather)!)}
-//    }
-//    
-//    
-//    var savedWeather: [Weather] = []
-//    
-//    func saveWeather(weatherData: [Weather]){
-//        let placesData = try! JSONEncoder().encode(weatherData)
-//        if placesData.isEmpty == false {
-//        UserDefaults.standard.setValue(placesData, forKey: weather)
-//        }
-//    }
-//    
-//    func loadWeather() {
-//        let placesData = UserDefaults.standard.data(forKey: weather)
-//        let weather: [Weather] = try! JSONDecoder().decode([Weather].self, from: placesData!)
-//        self.savedWeather = weather
-//    }
+
+    
+    
+    private let weatherKey = "weather"
+    private let requestKey = "request"
+    private let currentConditionKey = "currentCondition"
+    
+    var savedRequest: [Request] = []
+    var savedCurrentCondition: [CurrentCondition] = []
+    var savedWeather: [Weather] = []
+    
+    
+    func saveWeather(request: [Request], currentCondition: [CurrentCondition], weather: [Weather]){
+       
+        let requestData = try! JSONEncoder().encode(request)
+        let currentConditionData = try! JSONEncoder().encode(currentCondition)
+        let weatherData = try! JSONEncoder().encode(weather)
+        UserDefaults.standard.setValue(requestData, forKey: requestKey)
+        UserDefaults.standard.setValue(currentConditionData, forKey: currentConditionKey)
+        UserDefaults.standard.setValue(weatherData, forKey: weatherKey)
+
+    }
+    
+    func loadWeather() {
+        
+        let requestData = UserDefaults.standard.data(forKey: requestKey)
+        let request: [Request] = try! JSONDecoder().decode([Request].self, from: requestData!)
+        self.savedRequest = request
+        
+        let currentConditionData = UserDefaults.standard.data(forKey: currentConditionKey)
+        let currentCondition = try! JSONDecoder().decode([CurrentCondition].self, from: currentConditionData!)
+        self.savedCurrentCondition = currentCondition
+        
+        let weatherData = UserDefaults.standard.data(forKey: weatherKey)
+        let weather = try! JSONDecoder().decode([Weather].self, from: weatherData!)
+        self.savedWeather = weather
+    }
     
 }
 

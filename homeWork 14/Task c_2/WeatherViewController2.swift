@@ -13,62 +13,46 @@ class WeatherViewController2: UIViewController {
  
     @IBOutlet weak var dayWeather2TableView: UITableView!
     
-    var request: [Request] = []
-    var currentCondition: [CurrentCondition] = []
-    var weather: [Weather] = []
-    let persitance = Persistance()
+    let persistance = Persistance()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.dayWeather2CollectionView.delegate = self
         self.dayWeather2CollectionView.dataSource = self
         self.dayWeather2TableView.dataSource = self
-        //self.persitance.loadWeather()
-        let loader = WeatherLoader2()
-        loader.dayWeather2 {requestData, currentConditionData, weatherData  in
-            self.request = requestData
-            self.currentCondition = currentConditionData
-            self.weather = weatherData
-            DispatchQueue.main.async {
-                self.dayWeather2CollectionView.reloadData()
-                self.dayWeather2TableView.reloadData()
-            }
-            //self.persitance.saveWeather(weatherData: weatherData)
-        }
+        self.persistance.loadWeather()
         
+        DispatchQueue.main.async {
+            self.dayWeather2CollectionView.reloadData()
+            self.dayWeather2TableView.reloadData()
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
-        //self.persitance.loadWeather()
         let loader = WeatherLoader2()
-        loader.dayWeather2 {requestData, currentConditionData, weatherData  in
-            self.request = requestData
-            self.currentCondition = currentConditionData
-            self.weather = weatherData
-            //self.persitance.saveWeather(weatherData: weatherData)
+        loader.dayWeather2 {[weak self] requestData, currentConditionData, weatherData  in
+            guard let self = self else {return}
+            self.persistance.saveWeather(request: requestData, currentCondition: currentConditionData, weather: weatherData)
             DispatchQueue.main.async {
                 self.dayWeather2CollectionView.reloadData()
                 self.dayWeather2TableView.reloadData()
             }
-
         }
-        
+
     }
 }
 
 extension WeatherViewController2: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return request.count
+        return persistance.savedRequest.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let dayCell2 = dayWeather2CollectionView.dequeueReusableCell(withReuseIdentifier: "DayCell2", for: indexPath) as! DayCell2
-        let cellRequest = request[indexPath.item]
-        let cellcurrentCondition = currentCondition[indexPath.item]
-        let cellweather = weather[indexPath.row]
-            //persitance.savedWeather[indexPath.item]
-            
+        let cellRequest = persistance.savedRequest[indexPath.item]
+        let cellcurrentCondition = persistance.savedCurrentCondition[indexPath.item]
+        let cellweather = persistance.savedWeather[indexPath.item]
         dayCell2.nameLabel2.text = cellRequest.query
         dayCell2.tempLabel2.text = cellcurrentCondition.tempC
         dayCell2.descriptionLabel2.text = cellcurrentCondition.langRu[indexPath.row].value
@@ -91,23 +75,17 @@ extension WeatherViewController2: UICollectionViewDelegate, UICollectionViewData
 
 extension WeatherViewController2: UITableViewDataSource, UITableViewDelegate{
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return weather.count
-           // persitance.savedWeather.count
-            
+        return persistance.savedWeather.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let daysCell2 = dayWeather2TableView.dequeueReusableCell(withIdentifier: "DaysCell2", for: indexPath) as! DaysCell2
-        let weatherCell = weather[indexPath.row]
-            
-            //persitance.savedWeather[indexPath.row]
+        let weatherCell = persistance.savedWeather[indexPath.row]
         daysCell2.temp_minLabel2.text = weatherCell.mintempC + "º"
         daysCell2.temp_maxLabel2.text = weatherCell.maxtempC + "º"
         daysCell2.dateLabel2.text = dateFormatter(date: weatherCell.date).replacingOccurrences(of: ", ", with: ", \n").firstUppercased.replacingOccurrences(of: "2021", with: "").replacingOccurrences(of: "г.", with: "")
         return daysCell2
     }
-    
-    
 }
 
 extension WeatherViewController2{
