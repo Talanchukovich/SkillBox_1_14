@@ -29,12 +29,13 @@ class WeatherViewController2: UIViewController {
             self.request = requestData
             self.currentCondition = currentConditionData
             self.weather = weatherData
+            DispatchQueue.main.async {
+                self.dayWeather2CollectionView.reloadData()
+                self.dayWeather2TableView.reloadData()
+            }
             //self.persitance.saveWeather(weatherData: weatherData)
         }
-        DispatchQueue.main.async {
-            self.dayWeather2CollectionView.reloadData()
-            self.dayWeather2TableView.reloadData()
-        }
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -46,12 +47,13 @@ class WeatherViewController2: UIViewController {
             self.currentCondition = currentConditionData
             self.weather = weatherData
             //self.persitance.saveWeather(weatherData: weatherData)
-            
+            DispatchQueue.main.async {
+                self.dayWeather2CollectionView.reloadData()
+                self.dayWeather2TableView.reloadData()
+            }
+
         }
-        DispatchQueue.main.async {
-            self.dayWeather2CollectionView.reloadData()
-            self.dayWeather2TableView.reloadData()
-        }
+        
     }
 }
 
