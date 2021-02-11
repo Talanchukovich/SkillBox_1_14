@@ -20,8 +20,8 @@ class WeatherViewController2: UIViewController {
         self.dayWeather2CollectionView.delegate = self
         self.dayWeather2CollectionView.dataSource = self
         self.dayWeather2TableView.dataSource = self
+       
         self.persistance.loadWeather()
-        
         DispatchQueue.main.async {
             self.dayWeather2CollectionView.reloadData()
             self.dayWeather2TableView.reloadData()
@@ -34,6 +34,7 @@ class WeatherViewController2: UIViewController {
         loader.dayWeather2 {[weak self] requestData, currentConditionData, weatherData  in
             guard let self = self else {return}
             self.persistance.saveWeather(request: requestData, currentCondition: currentConditionData, weather: weatherData)
+            self.persistance.loadWeather()
             DispatchQueue.main.async {
                 self.dayWeather2CollectionView.reloadData()
                 self.dayWeather2TableView.reloadData()

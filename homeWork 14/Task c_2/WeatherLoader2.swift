@@ -10,7 +10,6 @@ import Alamofire
 
 class WeatherLoader2 {
     
-    let persistance = Persistance()
     func dayWeather2 (comletition: @escaping ([Request], [CurrentCondition], [Weather]) -> Void){
         
         let request = URLRequest(url: URL(string: "https://api.worldweatheronline.com/premium/v1/weather.ashx?key=763ccc3ca5c54dc88ea104425211801&q=moscow,ru&num_of_days=14&tp=24&format=JSON&date_format=unix&lang=ru")!, cachePolicy: .reloadIgnoringLocalAndRemoteCacheData, timeoutInterval: 60)

@@ -49,8 +49,8 @@ class Persistance {
     
     func loadWeather() {
         
-        let requestData = UserDefaults.standard.data(forKey: requestKey)
-        let request: [Request] = try! JSONDecoder().decode([Request].self, from: requestData!)
+        guard let requestData = UserDefaults.standard.data(forKey: requestKey) else {return}
+        let request: [Request] = try! JSONDecoder().decode([Request].self, from: requestData)
         self.savedRequest = request
         
         let currentConditionData = UserDefaults.standard.data(forKey: currentConditionKey)
