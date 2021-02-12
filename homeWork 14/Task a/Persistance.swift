@@ -53,12 +53,12 @@ class Persistance {
         let request: [Request] = try! JSONDecoder().decode([Request].self, from: requestData)
         self.savedRequest = request
         
-        let currentConditionData = UserDefaults.standard.data(forKey: currentConditionKey)
-        let currentCondition = try! JSONDecoder().decode([CurrentCondition].self, from: currentConditionData!)
+        guard let currentConditionData = UserDefaults.standard.data(forKey: currentConditionKey) else {return}
+        let currentCondition = try! JSONDecoder().decode([CurrentCondition].self, from: currentConditionData)
         self.savedCurrentCondition = currentCondition
         
-        let weatherData = UserDefaults.standard.data(forKey: weatherKey)
-        let weather = try! JSONDecoder().decode([Weather].self, from: weatherData!)
+        guard let weatherData = UserDefaults.standard.data(forKey: weatherKey)else {return}
+        let weather = try! JSONDecoder().decode([Weather].self, from: weatherData)
         self.savedWeather = weather
     }
     

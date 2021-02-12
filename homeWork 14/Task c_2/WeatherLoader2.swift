@@ -11,8 +11,8 @@ import Alamofire
 class WeatherLoader2 {
     
     func dayWeather2 (comletition: @escaping ([Request], [CurrentCondition], [Weather]) -> Void){
-        
-        let request = URLRequest(url: URL(string: "https://api.worldweatheronline.com/premium/v1/weather.ashx?key=763ccc3ca5c54dc88ea104425211801&q=moscow,ru&num_of_days=14&tp=24&format=JSON&date_format=unix&lang=ru")!, cachePolicy: .reloadIgnoringLocalAndRemoteCacheData, timeoutInterval: 60)
+        guard let url = URL(string: "https://api.worldweatheronline.com/premium/v1/weather.ashx?key=763ccc3ca5c54dc88ea104425211801&q=moscow,ru&num_of_days=14&tp=24&format=JSON&date_format=unix&lang=ru") else {return}
+        let request = URLRequest(url: url, cachePolicy: .reloadIgnoringLocalAndRemoteCacheData, timeoutInterval: 60)
         AF.request(request).validate().responseData { response in
             switch response.result {
             case .success(let value):
