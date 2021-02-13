@@ -12,6 +12,7 @@
 		CADB4F91FDD87938D2834EB1 /* Pods_homeWork_14Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F0440264DA7579048D68AD3E /* Pods_homeWork_14Tests.framework */; };
 		DA39EE3E25C9CBD00010FE86 /* Task_c_ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA39EE3D25C9CBCF0010FE86 /* Task_c_ViewController.swift */; };
 		DA39EE4B25C9DE3A0010FE86 /* TaskTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA39EE4A25C9DE3A0010FE86 /* TaskTableViewCell.swift */; };
+		DA4B008A25D82F94006610EB /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA4B008925D82F94006610EB /* CoreDataManager.swift */; };
 		DAB88B8F25CEC71800D0860D /* DateTimeTableController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAB88B8E25CEC71800D0860D /* DateTimeTableController.swift */; };
 		DAC50E1D25D2C1C0009FB1B7 /* WeatherLoader2.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAC50E1925D2C1C0009FB1B7 /* WeatherLoader2.swift */; };
 		DAC50E1E25D2C1C0009FB1B7 /* DayCell2.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAC50E1A25D2C1C0009FB1B7 /* DayCell2.swift */; };
@@ -59,6 +60,7 @@
 		D7CFC019E8E2C3A58190EE7F /* Pods_homeWork_14.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_homeWork_14.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		DA39EE3D25C9CBCF0010FE86 /* Task_c_ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Task_c_ViewController.swift; sourceTree = "<group>"; };
 		DA39EE4A25C9DE3A0010FE86 /* TaskTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskTableViewCell.swift; sourceTree = "<group>"; };
+		DA4B008925D82F94006610EB /* CoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
 		DAB88B8E25CEC71800D0860D /* DateTimeTableController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateTimeTableController.swift; sourceTree = "<group>"; };
 		DAC50E1925D2C1C0009FB1B7 /* WeatherLoader2.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeatherLoader2.swift; sourceTree = "<group>"; };
 		DAC50E1A25D2C1C0009FB1B7 /* DayCell2.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DayCell2.swift; sourceTree = "<group>"; };
@@ -157,6 +159,7 @@
 				DAC50E1A25D2C1C0009FB1B7 /* DayCell2.swift */,
 				DAC50E1C25D2C1C0009FB1B7 /* DaysCell2.swift */,
 				DAC50E1925D2C1C0009FB1B7 /* WeatherLoader2.swift */,
+				DA4B008925D82F94006610EB /* CoreDataManager.swift */,
 				DAC50E1B25D2C1C0009FB1B7 /* WeatherViewController2.swift */,
 			);
 			path = "Task c_2";
@@ -481,6 +484,7 @@
 				DAB88B8F25CEC71800D0860D /* DateTimeTableController.swift in Sources */,
 				DACB7A5B25C571560091AF58 /* homeWork_14.xcdatamodeld in Sources */,
 				DAC50E2D25D2C315009FB1B7 /* WeatherStruct.swift in Sources */,
+				DA4B008A25D82F94006610EB /* CoreDataManager.swift in Sources */,
 				DAC50E1E25D2C1C0009FB1B7 /* DayCell2.swift in Sources */,
 				DA39EE3E25C9CBD00010FE86 /* Task_c_ViewController.swift in Sources */,
 				DAC50E2025D2C1C0009FB1B7 /* DaysCell2.swift in Sources */,

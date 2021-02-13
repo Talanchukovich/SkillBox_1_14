@@ -30,14 +30,14 @@ class Persistance {
     private let weatherKey = "weather"
     private let requestKey = "request"
     private let currentConditionKey = "currentCondition"
-    
-    var savedRequest: [Request] = []
-    var savedCurrentCondition: [CurrentCondition] = []
-    var savedWeather: [Weather] = []
-    
-    
-    func saveWeather(request: [Request], currentCondition: [CurrentCondition], weather: [Weather]){
-       
+
+    var savedRequest: [Request1] = []
+    var savedCurrentCondition: [CurrentCondition1] = []
+    var savedWeather: [Weather1] = []
+
+
+    func saveWeather(request: [Request1], currentCondition: [CurrentCondition1], weather: [Weather1]){
+
         let requestData = try! JSONEncoder().encode(request)
         let currentConditionData = try! JSONEncoder().encode(currentCondition)
         let weatherData = try! JSONEncoder().encode(weather)
@@ -46,19 +46,19 @@ class Persistance {
         UserDefaults.standard.setValue(weatherData, forKey: weatherKey)
 
     }
-    
+
     func loadWeather() {
-        
+
         guard let requestData = UserDefaults.standard.data(forKey: requestKey) else {return}
-        let request: [Request] = try! JSONDecoder().decode([Request].self, from: requestData)
+        let request: [Request1] = try! JSONDecoder().decode([Request1].self, from: requestData)
         self.savedRequest = request
-        
+
         guard let currentConditionData = UserDefaults.standard.data(forKey: currentConditionKey) else {return}
-        let currentCondition = try! JSONDecoder().decode([CurrentCondition].self, from: currentConditionData)
+        let currentCondition = try! JSONDecoder().decode([CurrentCondition1].self, from: currentConditionData)
         self.savedCurrentCondition = currentCondition
-        
+
         guard let weatherData = UserDefaults.standard.data(forKey: weatherKey)else {return}
-        let weather = try! JSONDecoder().decode([Weather].self, from: weatherData)
+        let weather = try! JSONDecoder().decode([Weather1].self, from: weatherData)
         self.savedWeather = weather
     }
     

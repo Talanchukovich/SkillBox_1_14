@@ -12,9 +12,9 @@ struct WeatherStruct: Codable {
 }
 
 struct DataClass2: Codable {
-    let request: [Request]
-    let currentCondition: [CurrentCondition]
-    let weather: [Weather]
+    let request: [Request1]
+    let currentCondition: [CurrentCondition1]
+    let weather: [Weather1]
 
     enum CodingKeys: String, CodingKey {
         case request
@@ -23,29 +23,27 @@ struct DataClass2: Codable {
     }
 }
 
-struct CurrentCondition: Codable {
-    let observationTime, tempC: String
-    let weatherIconURL, langRu: [LangRu]
+struct CurrentCondition1: Codable {
+    let tempC: String
+    let langRu: [LangRu1]
     let feelsLikeC: String
 
     enum CodingKeys: String, CodingKey {
-        case observationTime = "observation_time"
         case tempC = "temp_C"
-        case weatherIconURL = "weatherIconUrl"
         case langRu = "lang_ru"
         case feelsLikeC = "FeelsLikeC"
     }
 }
 
-struct LangRu: Codable {
+struct LangRu1: Codable {
     let value: String
 }
 
-struct Request: Codable {
+struct Request1: Codable {
     let query: String
 }
 
-struct Weather: Codable {
+struct Weather1: Codable {
     let date: String
     let maxtempC, mintempC: String
 

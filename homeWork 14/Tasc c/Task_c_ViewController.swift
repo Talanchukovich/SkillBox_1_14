@@ -89,7 +89,6 @@ class Task_c_ViewController: UIViewController {
         self.adTaskButtonEdingMode = false
         self.constraint.constant = 0
         self.view.endEditing(true)
-        tvc?.removeFromParent()
         tvc?.datePickerAction(self)
         
     }
@@ -153,9 +152,8 @@ class Task_c_ViewController: UIViewController {
     func getAllTasks() {
         do {
             models = try context.fetch(TaskToDoC.fetchRequest()).sorted(by: {(initial, next) -> Bool in
-                
-                return initial.taskDate ?? "" < next.taskDate ?? ""
-                })
+                return initial.taskDate ?? "" < next.taskDate ?? "" })
+               
             DispatchQueue.main.async {
                 self.taskTableView2.reloadData()
             }

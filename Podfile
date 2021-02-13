@@ -6,7 +6,7 @@ target 'homeWork 14' do
   use_frameworks!
 
   # Pods for homeWork 14
-pod 'RealmSwift', '=10.5.1'
+pod 'RealmSwift', '=10.1.4'
 pod 'SnapKit', '~> 5.0.0'
 pod 'Alamofire', '~> 5.2'
 
